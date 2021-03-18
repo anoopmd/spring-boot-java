@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -21,5 +22,24 @@ public class StudentService {
 
     public List<Student> getStudents() {
         return studentRepository.findAll();
+    }
+
+    public void addNewStudent(Student student) {
+        Optional<Student> studentOptional =  studentRepository.findStudentByEmail(student.getEmail());
+        if(studentOptional.isPresent()) {
+            throw new IllegalStateException("Email taken");
+        }
+
+        studentRepository.save(student);
+    }
+
+    public void removeStudent(Long id) {
+        boolean exists = studentRepository.existsById(id);
+
+        if(!exists) {
+            throw new IllegalStateException("Student does not exist");
+        }
+
+        studentRepository.deleteById(id);
     }
 }

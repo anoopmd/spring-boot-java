@@ -18,17 +18,15 @@ public class StudentConfig {
         return args -> {
             Student anoop = new Student(
                     "Anoop",
-                    LocalDate.of(2000, Month.JANUARY, 5) ,
-                    "anoop@acme.org",
-                    21
+                    LocalDate.of(2000, Month.JANUARY, 5),
+                    "anoop@acme.org"
             );
 
 
             Student bruno = new Student(
-                    "Bruno",
-                    LocalDate.of(2000, Month.JANUARY, 5) ,
-                    "anoop@acme.org",
-                    2
+                    "bruno",
+                    LocalDate.of(2000, Month.JANUARY, 5),
+                    "bruno@acme.org"
             );
 
             studentRepository.saveAll(
